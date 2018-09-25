@@ -49,7 +49,16 @@ public class Calculator {
 		 */
 	}
 	
-	/* Hier die Methoden mit den Formlen hinzufügen
-	 */
+	private double wattOutOfAmpereAndOhm(double ampere, double ohm) {
+		return ohm * Math.pow(ampere, 2);
+	}
+
+	private double wattOutOfVoltAndAmpere(double volt, double ampere) {
+		return volt * ampere;
+	}
+
+	private double wattOutOfVoltAndOhm(double volt, double ohm) {
+		return Math.pow(volt, 2) / ohm;
+	}
 	
 }
