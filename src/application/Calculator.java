@@ -49,7 +49,7 @@ public class Calculator {
 		 */
 	}
 	
-	/* Hier die Methoden mit den Formlen hinzufügen
+	/* Hier die Methoden mit den Formlen hinzufÃ¼gen
 	 */
 	
 }
