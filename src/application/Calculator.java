@@ -51,5 +51,15 @@ public class Calculator {
 	
 	/* Hier die Methoden mit den Formlen hinzufügen
 	 */
+	private double ampereOutOfOhmAndVolt(double ohm, double volt){
+		return volt / ohm;
+	}
 	
+	private double ampereOutOfOhmAndWatt(double ohm, double watt){
+		return Math.sqrt(watt / ohm);
+	}
+	
+	private double ampereOutOfVoltAndWatt(double volt, double watt){
+		return watt / volt;
+	}
 }
