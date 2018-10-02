@@ -96,4 +96,8 @@ public class Calculator {
 		return watt/Math.pow(ampere, 2);
 	}
 	
+	private double OhmFromVoltAndWatt(double volt, double watt) {
+		return Math.pow(volt, 2)/watt;
+	}
+	
 }
