@@ -68,8 +68,20 @@ public class Calculator {
 		return volt / ohm;
 	}
 	
-	private double ampereOutOfOhmAndWatt(double ohm, double watt){
+	private double ampereOutOfOhmAndWatt(double ohm, double watt) {
 		return Math.sqrt(watt / ohm);
+	}
+
+	private double wattOutOfAmpereAndOhm(double ampere, double ohm) {
+		return ohm * Math.pow(ampere, 2);
+	}
+
+	private double wattOutOfVoltAndAmpere(double volt, double ampere) {
+		return volt * ampere;
+	}
+
+	private double wattOutOfVoltAndOhm(double volt, double ohm) {
+		return Math.pow(volt, 2) / ohm;
 	}
 	
 	private double ampereOutOfVoltAndWatt(double volt, double watt){
