@@ -7,12 +7,12 @@ package application;
  * @version 13.09.2018
  */
 public class Calculator {
-	private double leistung;
-	private double spannung;
-	private double strom;
-	private double widerstand;
+	private Double leistung;
+	private Double spannung;
+	private Double strom;
+	private Double widerstand;
 
-	public Calculator(double leistung, double spannung, double strom, double widerstand) {
+	public Calculator(Double leistung, Double spannung, Double strom, Double widerstand) {
 		super();
 		this.leistung = leistung;
 		this.spannung = spannung;
