@@ -43,11 +43,30 @@ public class Calculator {
 	}
 
 	public void calculate() {
-		/*
-		 * Hier auf Grund der vorhanden Werte entscheiden welche Methode unten
-		 * aufgerufen werden muss.
-		 */
+		if (leistung != null && spannung != null) {
+			strom = ampereOutOfVoltAndWatt(spannung, leistung);
+			widerstand = OhmFromVoltAndWatt(spannung, leistung);
+		} else if (leistung != null && strom != null) {
+			spannung = VoltFromWattAndAmpere(leistung, strom);
+			widerstand = OhmFromWattAndAmpere(leistung, strom);
+		} else if (leistung != null && widerstand != null) {
+			spannung = VoltFromWattAndOhm(leistung, widerstand);
+			strom = ampereOutOfOhmAndWatt(widerstand, leistung);
+		} else if (spannung != null && strom != null) {
+			leistung = wattOutOfVoltAndAmpere(spannung, strom);
+			widerstand = OhmFromVoltAndAmpere(spannung, strom);
+		} else if (spannung != null && widerstand != null) {
+			leistung = wattOutOfVoltAndOhm(spannung, widerstand);
+			strom = ampereOutOfOhmAndVolt(widerstand, spannung);
+		} else if (strom != null && widerstand != null) {
+			leistung = wattOutOfAmpereAndOhm(strom, widerstand);
+			spannung = VoltfromOhmandAmpere(widerstand, strom);
+		} else {
+			throw new RuntimeException("Not enough args");
+		}
 	}
+
+
 
 	/*
 	 * Hier die Methoden mit den Formlen hinzufügen
