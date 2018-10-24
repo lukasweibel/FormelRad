@@ -76,6 +76,10 @@ public class Calculator {
 		return ohm * Math.pow(ampere, 2);
 	}
 
+	private double wattOutOfVoltAndAmpere(double volt, double ampere) {
+		return volt * ampere;
+	}
+
 	private double ampereOutOfVoltAndWatt(double volt, double watt){
 		return watt / volt;
 	}
