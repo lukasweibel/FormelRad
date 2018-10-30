@@ -56,4 +56,8 @@ public class Calculator {
 		return ohm * ampere;
 	}
 
+	private double VoltFromWattAndAmpere(double watt, double ampere) {
+		return watt / ampere;
+	}
+
 }
