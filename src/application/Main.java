@@ -25,7 +25,7 @@ public class Main extends Application {
 			Pane root = new Pane();
 
 			// Creating an image
-			Image image = new Image(new FileInputStream("bin\\application\\formelradelektronik.gif"));
+			Image image = new Image(new FileInputStream("src/application/formelradelektronik.gif"));
 			ImageView imageView = new ImageView(image);
 			imageView.setX(10);
 			imageView.setY(10);
@@ -81,10 +81,10 @@ public class Main extends Application {
 			
 			btnBerechnen.setOnAction(e -> {
 				Calculator myCalculator = new Calculator(
-						Double.parseDouble(txLeistung.getText()),
-						Double.parseDouble(txSpannung.getText()),
-						Double.parseDouble(txStrom.getText()),
-						Double.parseDouble(txWiderstand.getText()));
+						evaluateDouble(txLeistung.getText()),
+						evaluateDouble(txSpannung.getText()),
+						evaluateDouble(txStrom.getText()),
+						evaluateDouble(txWiderstand.getText()));
 				System.out.print("Vorher:  ");
 				System.out.println(myCalculator.toString());
 				myCalculator.calculate();
@@ -105,6 +105,12 @@ public class Main extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private Double evaluateDouble(String value) {
+		if (value == null || value.isEmpty())
+			return null;
+		return Double.parseDouble(value);
 	}
 
 	public static void main(String[] args) {
