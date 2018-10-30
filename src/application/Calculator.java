@@ -60,4 +60,8 @@ public class Calculator {
 		return watt / ampere;
 	}
 
+	private double VoltFromWattAndOhm(double watt, double ohm) {
+		return Math.sqrt(watt * ohm);
+	}
+
 }
