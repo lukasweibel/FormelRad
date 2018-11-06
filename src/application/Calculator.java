@@ -79,15 +79,21 @@ public class Calculator {
 	 * Hier die Methoden mit den Formlen hinzufügen
 	 */
 	private double VoltfromOhmandAmpere(double ohm, double ampere) {
-		return ohm * ampere;
+		double result = ohm * ampere;
+		System.out.println("Result of volt from ohm (" + ohm + ") and ampere (" + ampere + ") is " + result);
+		return result;
 	}
 
 	private double VoltFromWattAndAmpere(double watt, double ampere) {
-		return watt / ampere;
+		double result = watt / ampere;
+		System.out.println("Result of volt from watt (" + watt + ") and ampere (" + ampere + ") is " + result);
+		return result;
 	}
 
 	private double VoltFromWattAndOhm(double watt, double ohm) {
-		return Math.sqrt(watt * ohm);
+		double result = Math.sqrt(watt * ohm);
+		System.out.println("Result of volt from watt (" + watt + ") and ohm (" + ohm + ") is " + result);
+		return result;
 	}
 
 	private double OhmFromVoltAndAmpere(double volt, double ampere) {
