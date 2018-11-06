@@ -88,6 +88,10 @@ public class Main extends Application {
 						evaluateDouble(txSpannung.getText()),
 						evaluateDouble(txStrom.getText()),
 						evaluateDouble(txWiderstand.getText()));
+				boolean isLeistungNull = myCalculator.getLeistung() == null;
+				boolean isSpannungNull = myCalculator.getSpannung() == null;
+				boolean isStromNull = myCalculator.getStrom() == null;
+				boolean isWiderstandNull = myCalculator.getWiderstand() == null;
 				System.out.print("Vorher:  ");
 				System.out.println(myCalculator.toString());
 				boolean validInputs = myCalculator.calculate();
@@ -100,11 +104,28 @@ public class Main extends Application {
                 }
 				System.out.print("Nachher: ");
 				System.out.println(myCalculator.toString());
-					
+				
+				txLeistung.setStyle("-fx-text-inner-color: black;");
+				txSpannung.setStyle("-fx-text-inner-color: black;");
+				txStrom.setStyle("-fx-text-inner-color: black;");
+				txWiderstand.setStyle("-fx-text-inner-color: black;");
+
 				txLeistung.setText(Double.toString(myCalculator.getLeistung()));
+				if(isLeistungNull) {
+					txLeistung.setStyle("-fx-text-inner-color: red;");
+				}
 				txSpannung.setText(Double.toString(myCalculator.getSpannung()));
+				if(isSpannungNull) {
+					txSpannung.setStyle("-fx-text-inner-color: red;");
+				}
 				txStrom.setText(Double.toString(myCalculator.getStrom()));
+				if(isStromNull) {
+					txStrom.setStyle("-fx-text-inner-color: red;");
+				}
 				txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+				if(isWiderstandNull) {
+					txWiderstand.setStyle("-fx-text-inner-color: red;");
+				}
 			});
 
 			Scene scene = new Scene(root, 330, 490);
