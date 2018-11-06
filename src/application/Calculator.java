@@ -23,19 +23,19 @@ public class Calculator {
 		this.widerstand = widerstand;
 	}
 
-	public double getLeistung() {
+	public Double getLeistung() {
 		return leistung;
 	}
 
-	public double getSpannung() {
+	public Double getSpannung() {
 		return spannung;
 	}
 
-	public double getStrom() {
+	public Double getStrom() {
 		return strom;
 	}
 
-	public double getWiderstand() {
+	public Double getWiderstand() {
 		return widerstand;
 	}
 
