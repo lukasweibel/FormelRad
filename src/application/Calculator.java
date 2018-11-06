@@ -115,15 +115,21 @@ public class Calculator {
 	}
 
 	private double wattOutOfAmpereAndOhm(double ampere, double ohm) {
-		return ohm * Math.pow(ampere, 2);
+		double result = ohm * Math.pow(ampere, 2);
+        System.out.println("Result of watt from ampere (" + ampere + ") and ohm (" + ohm + ") is " + result);
+        return result;
 	}
 
 	private double wattOutOfVoltAndAmpere(double volt, double ampere) {
-		return volt * ampere;
-	}
+		double result = volt * ampere;
+        System.out.println("Result of watt from volt (" + volt + ") and ampere (" + ampere + ") is " + result);
+        return result;
+    }
 
     private double wattOutOfVoltAndOhm(double volt, double ohm) {
-        return Math.pow(volt, 2) / ohm;
+        double result = Math.pow(volt, 2) / ohm;
+        System.out.println("Result of watt from volt (" + volt + ") and ohm (" + ohm + ") is " + result);
+        return result;
     }
 
     private double ampereOutOfVoltAndWatt(double volt, double watt){
