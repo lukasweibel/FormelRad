@@ -1,5 +1,8 @@
 package application;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 /**
  * Berechnet das Formelrad
  * 
@@ -42,7 +45,7 @@ public class Calculator {
 				+ widerstand + "]";
 	}
 
-	public void calculate() {
+	public boolean calculate() {
 		if (leistung != null && spannung != null) {
 			strom = ampereOutOfVoltAndWatt(spannung, leistung);
 			widerstand = OhmFromVoltAndWatt(spannung, leistung);
@@ -64,9 +67,15 @@ public class Calculator {
 		} else {
 			throw new RuntimeException("Not enough args");
 		}
-	}
 
-
+        long filledFieldsAmount = Stream.of(leistung, spannung, strom, widerstand)
+                .filter(Objects::nonNull)
+                .count();
+        if (filledFieldsAmount > 2) {
+            return false;
+        }
+        return true;
+    }
 
 	/*
 	 * Hier die Methoden mit den Formlen hinzufügen
