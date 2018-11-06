@@ -1,10 +1,8 @@
 package application;
 
-import java.io.FileInputStream;
-
 import javafx.application.Application;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,6 +10,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+
+import static javafx.scene.control.Alert.AlertType.WARNING;
 
 /**
  * Formelrad Application
@@ -87,7 +90,14 @@ public class Main extends Application {
 						evaluateDouble(txWiderstand.getText()));
 				System.out.print("Vorher:  ");
 				System.out.println(myCalculator.toString());
-				myCalculator.calculate();
+				boolean validInputs = myCalculator.calculate();
+				if (!validInputs) {
+                    Alert alert = new Alert(WARNING);
+                    alert.setTitle("Warning Dialog");
+                    alert.setHeaderText("More than two values");
+                    alert.setContentText("You filled out more than two fields... This is no problem, but take care..");
+                    alert.showAndWait();
+                }
 				System.out.print("Nachher: ");
 				System.out.println(myCalculator.toString());
 					
