@@ -46,6 +46,10 @@ public class Calculator {
 	}
 
 	public boolean calculate() {
+        long filledFieldsAmount = Stream.of(leistung, spannung, strom, widerstand)
+                .filter(Objects::nonNull)
+                .count();
+
 		if (leistung != null && spannung != null) {
 			strom = ampereOutOfVoltAndWatt(spannung, leistung);
 			widerstand = OhmFromVoltAndWatt(spannung, leistung);
@@ -68,13 +72,7 @@ public class Calculator {
 			throw new RuntimeException("Not enough args");
 		}
 
-        long filledFieldsAmount = Stream.of(leistung, spannung, strom, widerstand)
-                .filter(Objects::nonNull)
-                .count();
-        if (filledFieldsAmount > 2) {
-            return false;
-        }
-        return true;
+        return filledFieldsAmount < 3;
     }
 
 	/*
