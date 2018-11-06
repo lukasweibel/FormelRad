@@ -97,7 +97,9 @@ public class Calculator {
 	}
 
 	private double OhmFromVoltAndAmpere(double volt, double ampere) {
-		return volt/ampere;
+		double result = volt/ampere;
+        System.out.println("Result of ohm from volt (" + volt + ") and ampere (" + ampere + ") is " + result);
+        return result;
 	}
 
 	private double ampereOutOfOhmAndVolt(double ohm, double volt){
@@ -125,11 +127,15 @@ public class Calculator {
 	}
 
 	private double OhmFromWattAndAmpere(double watt, double ampere) {
-		return watt/Math.pow(ampere, 2);
-	}
+		double result =  watt/Math.pow(ampere, 2);
+        System.out.println("Result of ohm from watt (" + watt + ") and ampere (" + ampere + ") is " + result);
+        return result;
+    }
 
 	private double OhmFromVoltAndWatt(double volt, double watt) {
-		return Math.pow(volt, 2)/watt;
-	}
+		double result = Math.pow(volt, 2)/watt;
+        System.out.println("Result of ohm from volt (" + volt + ") and watt (" + watt + ") is " + result);
+        return result;
+    }
 	
 }
