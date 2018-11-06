@@ -1,8 +1,11 @@
 package application;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 /**
  * Berechnet das Formelrad
- * 
+ *
  * @author Peter Rutschmann
  * @version 13.09.2018
  */
@@ -42,7 +45,7 @@ public class Calculator {
 				+ widerstand + "]";
 	}
 
-	public void calculate() {
+	public boolean calculate() {
 		if (leistung != null && spannung != null) {
 			strom = ampereOutOfVoltAndWatt(spannung, leistung);
 			widerstand = OhmFromVoltAndWatt(spannung, leistung);
@@ -64,9 +67,15 @@ public class Calculator {
 		} else {
 			throw new RuntimeException("Not enough args");
 		}
-	}
 
-
+        long filledFieldsAmount = Stream.of(leistung, spannung, strom, widerstand)
+                .filter(Objects::nonNull)
+                .count();
+        if (filledFieldsAmount > 2) {
+            return false;
+        }
+        return true;
+    }
 
 	/*
 	 * Hier die Methoden mit den Formlen hinzufügen
@@ -90,7 +99,7 @@ public class Calculator {
 	private double ampereOutOfOhmAndVolt(double ohm, double volt){
 		return volt / ohm;
 	}
-	
+
 	private double ampereOutOfOhmAndWatt(double ohm, double watt) {
 		return Math.sqrt(watt / ohm);
 	}
@@ -118,5 +127,5 @@ public class Calculator {
 	private double OhmFromVoltAndWatt(double volt, double watt) {
 		return Math.pow(volt, 2)/watt;
 	}
-	
+
 }

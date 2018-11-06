@@ -87,7 +87,7 @@ public class Main extends Application {
 						evaluateDouble(txWiderstand.getText()));
 				System.out.print("Vorher:  ");
 				System.out.println(myCalculator.toString());
-				myCalculator.calculate();
+				boolean validInputs = myCalculator.calculate();
 				System.out.print("Nachher: ");
 				System.out.println(myCalculator.toString());
 					
