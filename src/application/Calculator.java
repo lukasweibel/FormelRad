@@ -1,5 +1,8 @@
 package application;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 /**
  * Berechnet das Formelrad
  * 
@@ -20,19 +23,19 @@ public class Calculator {
 		this.widerstand = widerstand;
 	}
 
-	public double getLeistung() {
+	public Double getLeistung() {
 		return leistung;
 	}
 
-	public double getSpannung() {
+	public Double getSpannung() {
 		return spannung;
 	}
 
-	public double getStrom() {
+	public Double getStrom() {
 		return strom;
 	}
 
-	public double getWiderstand() {
+	public Double getWiderstand() {
 		return widerstand;
 	}
 
@@ -42,7 +45,11 @@ public class Calculator {
 				+ widerstand + "]";
 	}
 
-	public void calculate() {
+	public boolean calculate() {
+        long filledFieldsAmount = Stream.of(leistung, spannung, strom, widerstand)
+                .filter(Objects::nonNull)
+                .count();
+
 		if (leistung != null && spannung != null) {
 			strom = ampereOutOfVoltAndWatt(spannung, leistung);
 			widerstand = OhmFromVoltAndWatt(spannung, leistung);
@@ -64,59 +71,83 @@ public class Calculator {
 		} else {
 			throw new RuntimeException("Not enough args");
 		}
-	}
 
-
+        return filledFieldsAmount < 3;
+    }
 
 	/*
 	 * Hier die Methoden mit den Formlen hinzufügen
 	 */
 	private double VoltfromOhmandAmpere(double ohm, double ampere) {
-		return ohm * ampere;
+		double result = ohm * ampere;
+		System.out.println("Result of volt from ohm (" + ohm + ") and ampere (" + ampere + ") is " + result);
+		return result;
 	}
 
 	private double VoltFromWattAndAmpere(double watt, double ampere) {
-		return watt / ampere;
+		double result = watt / ampere;
+		System.out.println("Result of volt from watt (" + watt + ") and ampere (" + ampere + ") is " + result);
+		return result;
 	}
 
 	private double VoltFromWattAndOhm(double watt, double ohm) {
-		return Math.sqrt(watt * ohm);
+		double result = Math.sqrt(watt * ohm);
+		System.out.println("Result of volt from watt (" + watt + ") and ohm (" + ohm + ") is " + result);
+		return result;
 	}
 
 	private double OhmFromVoltAndAmpere(double volt, double ampere) {
-		return volt/ampere;
+		double result = volt/ampere;
+        System.out.println("Result of ohm from volt (" + volt + ") and ampere (" + ampere + ") is " + result);
+        return result;
 	}
 
 	private double ampereOutOfOhmAndVolt(double ohm, double volt){
-		return volt / ohm;
-	}
+		double result = volt / ohm;
+        System.out.println("Result of ampere from ohm (" + ohm + ") and volt (" + volt + ") is " + result);
+        return result;
+    }
 	
 	private double ampereOutOfOhmAndWatt(double ohm, double watt) {
-		return Math.sqrt(watt / ohm);
+		double result = Math.sqrt(watt / ohm);
+        System.out.println("Result of ampere from ohm (" + ohm + ") and watt (" + watt + ") is " + result);
+        return result;
 	}
 
 	private double wattOutOfAmpereAndOhm(double ampere, double ohm) {
-		return ohm * Math.pow(ampere, 2);
+		double result = ohm * Math.pow(ampere, 2);
+        System.out.println("Result of watt from ampere (" + ampere + ") and ohm (" + ohm + ") is " + result);
+        return result;
 	}
 
 	private double wattOutOfVoltAndAmpere(double volt, double ampere) {
-		return volt * ampere;
-	}
+		double result = volt * ampere;
+        System.out.println("Result of watt from volt (" + volt + ") and ampere (" + ampere + ") is " + result);
+        return result;
+    }
 
     private double wattOutOfVoltAndOhm(double volt, double ohm) {
-        return Math.pow(volt, 2) / ohm;
+        double result = Math.pow(volt, 2) / ohm;
+        System.out.println("Result of watt from volt (" + volt + ") and ohm (" + ohm + ") is " + result);
+        return result;
     }
 
     private double ampereOutOfVoltAndWatt(double volt, double watt){
-		return watt / volt;
-	}
+		double result = watt / volt;
+        System.out.println("Result of ampere from volt (" + volt + ") and watt (" + watt + ") is " + result);
+        return result;
+    }
 
 	private double OhmFromWattAndAmpere(double watt, double ampere) {
-		return watt/Math.pow(ampere, 2);
-	}
+		double result =  watt/Math.pow(ampere, 2);
+        System.out.println("Result of ohm from watt (" + watt + ") and ampere (" + ampere + ") is " + result);
+        return result;
+    }
 
 	private double OhmFromVoltAndWatt(double volt, double watt) {
-		return Math.pow(volt, 2)/watt;
-	}
+		double result = Math.pow(volt, 2)/watt;
+        System.out.println("Result of ohm from volt (" + volt + ") and watt (" + watt + ") is " + result);
+        return result;
+    }
 	
 }

@@ -1,10 +1,8 @@
 package application;
 
-import java.io.FileInputStream;
-
 import javafx.application.Application;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,6 +10,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+
+import static javafx.scene.control.Alert.AlertType.WARNING;
 
 /**
  * Formelrad Application
@@ -85,16 +88,44 @@ public class Main extends Application {
 						evaluateDouble(txSpannung.getText()),
 						evaluateDouble(txStrom.getText()),
 						evaluateDouble(txWiderstand.getText()));
+				boolean isLeistungNull = myCalculator.getLeistung() == null;
+				boolean isSpannungNull = myCalculator.getSpannung() == null;
+				boolean isStromNull = myCalculator.getStrom() == null;
+				boolean isWiderstandNull = myCalculator.getWiderstand() == null;
 				System.out.print("Vorher:  ");
 				System.out.println(myCalculator.toString());
-				myCalculator.calculate();
+				boolean validInputs = myCalculator.calculate();
+				if (!validInputs) {
+                    Alert alert = new Alert(WARNING);
+                    alert.setTitle("Warning Dialog");
+                    alert.setHeaderText("More than two values");
+                    alert.setContentText("You filled out more than two fields... This is no problem, but take care..");
+                    alert.showAndWait();
+                }
 				System.out.print("Nachher: ");
 				System.out.println(myCalculator.toString());
-					
+				
+				txLeistung.setStyle("-fx-text-inner-color: black;");
+				txSpannung.setStyle("-fx-text-inner-color: black;");
+				txStrom.setStyle("-fx-text-inner-color: black;");
+				txWiderstand.setStyle("-fx-text-inner-color: black;");
+
 				txLeistung.setText(Double.toString(myCalculator.getLeistung()));
+				if(isLeistungNull) {
+					txLeistung.setStyle("-fx-text-inner-color: red;");
+				}
 				txSpannung.setText(Double.toString(myCalculator.getSpannung()));
+				if(isSpannungNull) {
+					txSpannung.setStyle("-fx-text-inner-color: red;");
+				}
 				txStrom.setText(Double.toString(myCalculator.getStrom()));
+				if(isStromNull) {
+					txStrom.setStyle("-fx-text-inner-color: red;");
+				}
 				txWiderstand.setText(Double.toString(myCalculator.getWiderstand()));
+				if(isWiderstandNull) {
+					txWiderstand.setStyle("-fx-text-inner-color: red;");
+				}
 			});
 
 			Scene scene = new Scene(root, 330, 490);
